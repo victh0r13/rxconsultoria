@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soluções - RX Consultoria</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navegação -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">RX Consultoria</a>
+
+        <!-- Botão hamburguer -->
+        <div class="menu-toggle" id="menu-toggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-menu-icon lucide-menu"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+        </div>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solucoes.html" class="active">Soluções</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="curiosidades.html">Educação Financeira</a></li>
+          <li><a href="sobre.html">Sobre mim</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="page-content">
+      <div class="container">
+        <h1 class="page-title">Soluções</h1>
+
+        <!-- Cards de Soluções -->
+        <div class="solutions-grid">
+          <!-- Renda Fixa -->
+          <div class="solution-card">
+            <div class="solution-icon">
+              <!-- Ícone de Círculo com Cifrão -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="42"
+                height="42"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="green"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-dollar-sign"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+                <path d="M12 18V6" />
+              </svg>
+            </div>
+
+            <h2>RENDA FIXA</h2>
+            <ul>
+              <li>TESOURO DIRETO</li>
+              <li>CDB</li>
+              <li>LCI e LCA</li>
+              <li>LF</li>
+              <li>CRI e CRA</li>
+              <li>DEBÊNTURES</li>
+            </ul>
+          </div>
+
+          <!-- Renda Variável -->
+          <div class="solution-card">
+            <div class="solution-icon">
+              <!-- Ícone de gráfico -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="green"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="42"
+                height="42"
+              >
+                <path
+                  d="M4 20h16M6 16l4-4 3 3 5-5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h2>RENDA VARIÁVEL</h2>
+            <ul>
+              <li>AÇÕES</li>
+              <li>OPÇÕES</li>
+              <li>COE</li>
+              <li>FUNDOS IMOBILIÁRIOS</li>
+            </ul>
+          </div>
+
+          <!-- Fundos -->
+          <div class="solution-card">
+            <div class="solution-icon">
+              <!-- Ícone de portfólio -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="green"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="42"
+                height="42"
+              >
+                <path d="M3 7h18v13H3z" stroke-linejoin="round" />
+                <path d="M8 7V4h8v3" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <h2>FUNDOS</h2>
+            <ul>
+              <li>FUNDOS DE INVESTIMENTOS</li>
+              <li>PREVIDÊNCIA PRIVADA</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Consultoria Personalizada -->
+        <div class="consultoria-box">
+          <h2>Consultoria Personalizada</h2>
+          <p>
+            Desenvolvo planos de investimento sob medida para cada perfil e
+            objetivo. Analiso seu patrimônio atual e elaboro estratégias
+            personalizadas para maximizar seus rendimentos com segurança e
+            inteligência.
+          </p>
+          <p>
+            Seja para proteger seu capital, fazê-lo crescer ou planejar sua
+            aposentadoria, há uma solução ideal para você.
+          </p>
+          <a href="contato.html" class="btn btn-primary"
+            >FALE COM SUA ASSESSORA →</a
+          >
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <h3>RX Consultoria</h3>
+          <p>Assessoria Financeira Personalizada</p>
+        </div>
+
+        <div class="footer-info">
+          <p>
+            © 2025 RX Consultoria — <strong>Victor Hugo Gomes Xavier</strong> —
+            UCB
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,753 @@
+/* ==================== RESET E CONFIGURAÇÕES GERAIS ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    background-color: #ffffff;
+    color: #171717;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==================== CONTAINERS ==================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ==================== NAVEGAÇÃO ==================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #171717;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #171717;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: #2d7a4f;
+}
+
+/* ==================== HERO SECTION (HOME) ==================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('assets/predios.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 1.5rem;
+    max-width: 1000px;
+}
+
+.hero h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+/* ==================== BOTÕES ==================== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #2d7a4f;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #256140;
+    transform: scale(1.05);
+}
+
+.btn-dark {
+    background-color: #171717;
+    color: #ffffff;
+}
+
+.btn-dark:hover {
+    background-color: #2a2a2a;
+}
+
+.btn-whatsapp {
+    font-size: 1.25rem;
+    padding: 1.5rem 3rem;
+}
+
+/* ==================== PÁGINAS INTERNAS ==================== */
+.page-content {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #171717;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #171717;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* ==================== SOLUÇÕES ==================== */
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.solution-card {
+    background-color: #171717;
+    color: #ffffff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.solution-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.solution-card h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.solution-card ul {
+    list-style: none;
+    
+}
+
+.solution-card ul li {
+  text-align: start;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.solution-card li {
+    text-align: start;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+
+}
+
+.consultoria-box {
+    background-color: #f5f5f5;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    
+    
+}
+
+.consultoria-box h2 {
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+}
+
+.consultoria-box p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==================== EQUIPE ==================== */
+/* ===== CARD PRINCIPAL ===== */
+/* ===== CARD CORPORATIVO ===== */
+.team-card {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 16px;
+  padding: 60px 50px;
+  max-width: 750px;
+  margin: 80px auto;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* ===== FOTO ===== */
+.team-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+  border: 3px solid #0e3f2f; /* verde escuro elegante */
+  box-shadow: 0 0 15px rgba(14, 63, 47, 0.15);
+}
+
+/* ===== TEXTOS ===== */
+.team-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0e3f2f; /* tom verde institucional */
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.team-role {
+  color: #495057;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.team-ancord {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 25px;
+  letter-spacing: 0.2px;
+}
+
+.team-bio {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #343a40;
+  text-align: justify;
+  max-width: 650px;
+  margin: 0 auto 35px auto;
+}
+
+/* ===== BOTÕES ===== */
+.team-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Botão LinkedIn */
+.btn-dark {
+  background-color: #212529;
+  color: white;
+  border: 1px solid #212529;
+}
+
+.btn-dark:hover {
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid #212529;
+}
+
+/* Botão WhatsApp */
+.btn-primary {
+  background-color: #0e3f2f;
+  color: white;
+  border: 1px solid #0e3f2f;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #0e3f2f;
+  border: 1px solid #0e3f2f;
+}
+
+/* ===== SOMBRA SUAVE NO CONJUNTO ===== */
+main.page-content {
+  background: linear-gradient(180deg, #f9fafb 0%, #f1f3f2 100%);
+  padding-bottom: 60px;
+}
+/* Corrige ícones dentro dos botões no hover */
+.btn-dark:hover svg path {
+  fill: #212529; /* cor do texto do botão LinkedIn */
+}
+
+.btn-primary:hover svg path {
+  fill: #0e3f2f; /* verde institucional do botão WhatsApp */
+}
+
+
+
+/* ==================== CONTATO ==================== */
+.contact-section {
+    margin-top: 3rem;
+}
+
+.contact-subtitle {
+    font-size: 1.25rem;
+    text-align: center;
+    color: #737373;
+    margin-bottom: 2rem;
+}
+
+.contact-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.whatsapp-button-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-divider {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 2rem;
+}
+
+.contact-other-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(45, 122, 79, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.contact-item h4 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.contact-item p {
+    color: #737373;
+}
+
+.contact-item a {
+    color: #2d7a4f;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.hours-box {
+    background-color: rgba(45, 122, 79, 0.05);
+    border: 1px solid rgba(45, 122, 79, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* ==================== SOBRE NÓS ==================== */
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-icon {
+    width: 6rem;
+    height: 6rem;
+    /* background-image: url(assets/rosangela-xavier.png); */
+    /* background-color: rgba(164, 165, 166, 0.897); */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin: 0 auto 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.about-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-card p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.valores-box {
+    background-color: rgba(45, 122, 79, 0.05);
+    border-left: 4px solid #2d7a4f;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.valores-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.valores-box ul {
+    list-style: none;
+}
+
+.valores-box li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.valores-box .bullet {
+    color: #2d7a4f;
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+ /* ===== CURIOSIDADES ===== */
+      .hero-curiosidades {
+        background: linear-gradient(to bottom, #fff, #f5f5f5);
+        text-align: center;
+        padding: 8rem 1.5rem 5rem;
+      }
+
+      .hero-curiosidades h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #171717;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-curiosidades p {
+        font-size: 1.125rem;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .curiosidades-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 4rem 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .curiosidade-card {
+        background: #fff;
+        border: 1px solid #e5e5e5;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+      }
+
+      .curiosidade-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .curiosidade-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #2d7a4f;
+      }
+
+      .curiosidade-card h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #171717;
+        margin-bottom: 0.25rem;
+      }
+
+      .curiosidade-card h3 {
+        font-size: 1rem;
+        color: #2d7a4f;
+        margin-bottom: 1rem;
+      }
+
+      .curiosidade-card p {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .cta-curiosidades {
+        background-color: #f5f5f5;
+        text-align: center;
+        padding: 5rem 1.5rem;
+      }
+
+      .cta-curiosidades h2 {
+        font-size: 2rem;
+        color: #171717;
+        margin-bottom: 1rem;
+      }
+
+      .cta-curiosidades p {
+        color: #555;
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-curiosidades a {
+        background-color: #2d7a4f;
+        color: #fff;
+        padding: 1rem 2.5rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .cta-curiosidades a:hover {
+        background-color: #256140;
+      }
+
+/* FOOTER */
+.footer {
+  background-color: #0f0f0f;
+  color: #dcdcdc;
+  padding: 40px 0 20px;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-logo h3 {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.footer-logo p {
+  color: #8f8f8f;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.footer-info p {
+  font-size: 13px;
+  color: #999;
+  border-top: 1px solid #1f1f1f;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+.footer-info strong {
+  color: #1db954;
+  font-weight: 600;
+}
+
+/* Remove qualquer espaçamento embaixo do body */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Garante que a seção hero encoste no footer */
+.hero {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Oculta o botão no desktop */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Padrão desktop */
+.nav-menu {
+  display: flex;
+  gap: 24px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: white;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu a {
+    color: #1b1b1b;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

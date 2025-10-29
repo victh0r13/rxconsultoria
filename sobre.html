@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós - RX Consultoria</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navegação -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">RX Consultoria</a>
+
+        <!-- Botão hamburguer -->
+        <div class="menu-toggle" id="menu-toggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-menu-icon lucide-menu"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+        </div>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solucoes.html">Soluções</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="curiosidades.html">Educação Financeira</a></li>
+          <li><a href="sobre.html" class="active">Sobre mim</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="page-content">
+      <div class="container-narrow">
+        <div class="about-header">
+          <div class="about-icon">RX</div>
+          <h1 class="page-title">Sobre a RX Consultoria</h1>
+        </div>
+
+        <div class="about-card">
+          <p>
+            A <strong>RX Consultoria</strong> é uma assessoria financeira
+            personalizada, dedicada a ajudar você a alcançar seus objetivos
+            patrimoniais com segurança e inteligência.
+          </p>
+
+          <p>
+            Minha missão é oferecer soluções de investimentos sob medida,
+            adequadas ao seu perfil e às suas metas financeiras. Acredito que
+            cada cliente é único e merece uma estratégia exclusiva para fazer
+            seu patrimônio crescer de forma sustentável.
+          </p>
+
+          <p>
+            Com anos de experiência no mercado financeiro, acompanho de perto as
+            tendências do mercado e utilizo as melhores práticas para garantir
+            que seus investimentos sejam sempre bem direcionados.
+          </p>
+
+          <p>
+            Valorizo a transparência, a ética e o compromisso com o crescimento
+            sustentável do patrimônio dos meus clientes. Aqui, você não é apenas
+            um número — é um parceiro em uma jornada rumo à segurança financeira
+            e à realização dos seus sonhos.
+          </p>
+
+          <div class="valores-box">
+            <h2>Nossos Valores</h2>
+            <ul>
+              <li>
+                <span class="bullet">•</span>
+                <span
+                  ><strong>Segurança:</strong> Proteger e fazer crescer seu
+                  patrimônio com responsabilidade</span
+                >
+              </li>
+              <li>
+                <span class="bullet">•</span>
+                <span
+                  ><strong>Personalização:</strong> Soluções exclusivas para
+                  cada perfil de investidor</span
+                >
+              </li>
+              <li>
+                <span class="bullet">•</span>
+                <span
+                  ><strong>Transparência:</strong> Comunicação clara e honesta
+                  em todas as etapas</span
+                >
+              </li>
+              <li>
+                <span class="bullet">•</span>
+                <span
+                  ><strong>Excelência:</strong> Atendimento de alta qualidade
+                  com foco em resultados</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

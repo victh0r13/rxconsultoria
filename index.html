@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RX Consultoria - Assessoria de Investimentos</title>
+    <meta
+      name="description"
+      content="Invista com uma especialista no mercado e faça seu patrimônio crescer de forma inteligente e segura."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navegação -->
+
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">RX Consultoria</a>
+
+        <!-- Botão hamburguer -->
+        <div class="menu-toggle" id="menu-toggle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-menu-icon lucide-menu"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+        </div>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="solucoes.html">Soluções</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="curiosidades.html">Educação Financeira</a></li>
+          <li><a href="sobre.html">Sobre mim</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>
+          Invista com uma especialista no mercado e faça seu patrimônio crescer
+          de forma inteligente e segura.
+        </h1>
+        <a href="contato.html" class="btn btn-primary"
+          >FALE COM SUA ASSESSORA →</a
+        >
+      </div>
+    </section>
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navMenu = document.getElementById("nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
