@@ -1,7 +1,6 @@
 "use client";
 
 import { useTransition } from "react";
-import { Sparkles } from "lucide-react";
 import { loadSampleData } from "@/app/actions";
 import { useToast } from "./ui";
 
@@ -16,14 +15,14 @@ export function SampleDataButton() {
         start(async () => {
           try {
             await loadSampleData();
-            toast({ kind: "success", text: "Dados de exemplo carregados!" });
+            toast({ kind: "success", text: "Dados de exemplo carregados." });
           } catch (e) {
             toast({ kind: "error", text: (e as Error).message });
           }
         })
       }
     >
-      <Sparkles size={16} /> {pending ? "Carregando…" : "Carregar exemplo"}
+      {pending ? "Carregando…" : "Carregar exemplo"}
     </button>
   );
 }

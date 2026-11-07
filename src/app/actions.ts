@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { assertUnlocked } from "@/lib/session";
 import { mutate, newId, normalizeDb, replaceDb, emptyDatabase, defaultSettings } from "@/lib/db";
 import { toDateInput } from "@/lib/format";
 import type { ChargeLog, Database, PaymentMethod, Product, Settings, Student, Transaction, TxItem } from "@/lib/types";
@@ -30,6 +31,7 @@ export type StudentInput = Pick<Student, "name" | "grade" | "guardianName" | "ph
 };
 
 export async function saveStudent(id: string | null, input: StudentInput): Promise<{ id: string }> {
+  await assertUnlocked();
   const name = input.name.trim();
   if (!name) throw new Error("Informe o nome do aluno.");
   const result = await mutate((db) => {
@@ -63,6 +65,7 @@ export async function saveStudent(id: string | null, input: StudentInput): Promi
 }
 
 export async function setStudentFlags(id: string, flags: Partial<Pick<Student, "blocked" | "archived">>) {
+  await assertUnlocked();
   await mutate((db) => {
     const s = db.students.find((x) => x.id === id);
     if (!s) throw new Error("Aluno não encontrado.");
@@ -73,6 +76,7 @@ export async function setStudentFlags(id: string, flags: Partial<Pick<Student, "
 }
 
 export async function deleteStudent(id: string) {
+  await assertUnlocked();
   await mutate((db) => {
     db.students = db.students.filter((s) => s.id !== id);
     db.transactions = db.transactions.filter((t) => t.studentId !== id);
@@ -90,6 +94,7 @@ export async function addPurchase(input: {
   note: string;
   date?: string;
 }): Promise<{ id: string }> {
+  await assertUnlocked();
   const items = input.items
     .filter((i) => i.qty > 0)
     .map((i) => ({ productId: i.productId, name: i.name, unitPrice: cents(i.unitPrice), qty: Math.round(i.qty) }));
@@ -123,6 +128,7 @@ export async function addPayment(input: {
   note: string;
   date?: string;
 }): Promise<{ id: string }> {
+  await assertUnlocked();
   const amount = cents(input.amount);
   if (amount <= 0) throw new Error("Informe o valor recebido.");
   const res = await mutate((db) => {
@@ -145,6 +151,7 @@ export async function addPayment(input: {
 }
 
 export async function deleteTransaction(id: string) {
+  await assertUnlocked();
   await mutate((db) => {
     db.transactions = db.transactions.filter((t) => t.id !== id);
   });
@@ -154,6 +161,7 @@ export async function deleteTransaction(id: string) {
 // ---------- Cobranças ----------
 
 export async function logCharge(studentId: string, amount: number, channel: ChargeLog["channel"]) {
+  await assertUnlocked();
   await mutate((db) => {
     const s = db.students.find((x) => x.id === studentId);
     if (!s) throw new Error("Aluno não encontrado.");
@@ -167,6 +175,7 @@ export async function logCharge(studentId: string, amount: number, channel: Char
 // ---------- Cardápio ----------
 
 export async function saveProduct(input: Omit<Product, "id"> & { id?: string | null }) {
+  await assertUnlocked();
   const name = input.name.trim();
   if (!name) throw new Error("Informe o nome do produto.");
   await mutate((db) => {
@@ -189,6 +198,7 @@ export async function saveProduct(input: Omit<Product, "id"> & { id?: string | n
 }
 
 export async function deleteProduct(id: string) {
+  await assertUnlocked();
   await mutate((db) => {
     db.products = db.products.filter((p) => p.id !== id);
   });
@@ -198,6 +208,7 @@ export async function deleteProduct(id: string) {
 // ---------- Configurações e dados ----------
 
 export async function saveSettings(input: Settings) {
+  await assertUnlocked();
   await mutate((db) => {
     db.settings = {
       ...defaultSettings(),
@@ -210,6 +221,7 @@ export async function saveSettings(input: Settings) {
 }
 
 export async function restoreBackup(json: string): Promise<{ students: number; transactions: number }> {
+  await assertUnlocked();
   let parsed: Partial<Database>;
   try {
     parsed = JSON.parse(json);
@@ -226,11 +238,13 @@ export async function restoreBackup(json: string): Promise<{ students: number; t
 }
 
 export async function wipeAll() {
+  await assertUnlocked();
   await replaceDb(emptyDatabase());
   refresh();
 }
 
 export async function loadSampleData() {
+  await assertUnlocked();
   await mutate((db) => {
     if (db.students.length > 0) throw new Error("Já existem alunos cadastrados.");
     const names: [string, string, string, string][] = [

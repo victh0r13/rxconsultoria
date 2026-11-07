@@ -25,6 +25,7 @@ Roda **no próprio MacBook**, sem internet e sem mensalidade. Os dados ficam só
 | **Desfazer** | Errou? Logo após anotar aparece o botão **Desfazer**. |
 | **Lançar em outra data** | Para passar as anotações do caderno de papel para o sistema. |
 | **Backup automático** | Uma cópia por dia (guarda os últimos 60 dias), além de backup/restauração manual. |
+| **PIN de 4 números** | Criado no primeiro acesso. Pedido ao abrir e quando o sistema fica parado (tempo ajustável). Botão **Bloquear** no canto. |
 | **Modo escuro** | Acompanha o modo claro/escuro do Mac. |
 
 ### Atalhos de teclado
@@ -53,6 +54,14 @@ Dê dois cliques em **`Abrir Caderninho.command`** sempre que for usar (deixe a 
 
 ---
 
+## 🔒 PIN
+
+- No primeiro acesso o sistema pede para criar um PIN de 4 números.
+- Ele é pedido de novo ao abrir o Caderninho, ao clicar em **Bloquear** e depois de alguns minutos parado (padrão: 10 min — muda em **Ajustes → PIN e bloqueio**).
+- Depois de 5 tentativas erradas, o sistema faz esperar antes de tentar de novo.
+- **Esqueceu o PIN?** Apague o arquivo `dados/seguranca.json` e recarregue a página para criar outro. Nenhum fiado é perdido.
+- O sistema só aceita conexões do próprio Mac (não fica visível para outros aparelhos no Wi-Fi).
+
 ## 💾 Onde ficam os dados
 
 - Tudo fica na pasta **`dados/`** dentro desta pasta (arquivo `caderninho.json`).
@@ -70,6 +79,7 @@ Substitua os arquivos pela versão nova (**mantendo a pasta `dados/`**) e rode `
 
 - **Next.js 16** (App Router, Server Actions) + **React 19** + **TypeScript** + **Tailwind CSS 4**.
 - Armazenamento em arquivo JSON local com gravação atômica, fila de escrita e backups diários — sem banco de dados para instalar.
+- PIN com hash `scrypt`, sessão em cookie assinado (HMAC) verificada no `proxy.ts` e em todas as ações do servidor.
 - Valores guardados em centavos (inteiros) para não haver erro de arredondamento.
 - Pix “copia e cola” gerado localmente no padrão BR Code (EMV) do Banco Central.
 
@@ -83,6 +93,7 @@ Variável opcional: `CADERNINHO_DATA_DIR` para guardar os dados em outra pasta.
 
 ```
 src/
+  proxy.ts        bloqueio por PIN de todas as páginas e rotas
   app/            páginas (painel, alunos, cobranças, histórico, cardápio, ajustes) e ações do servidor
   components/     diálogos (anotar fiado, receber, cobrar, aluno), busca e componentes de interface
   lib/            dados (db.ts), cálculos de saldo (calc.ts), Pix (pix.ts), mensagem (message.ts)

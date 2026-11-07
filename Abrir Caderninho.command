@@ -41,4 +41,4 @@ echo "     Para fechar o Caderninho, feche esta janela."
 echo ""
 
 ( for _ in $(seq 1 40); do sleep 0.5; curl -s -o /dev/null "$URL" && { open "$URL"; break; }; done ) &
-exec npx next start -p "$PORT"
+exec npx next start -p "$PORT" -H 127.0.0.1

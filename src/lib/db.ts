@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import { DEFAULT_TEMPLATE } from "./message";
 import type { Database, Product, Settings, Student, Transaction } from "./types";
 
 export const DATA_DIR = process.env.CADERNINHO_DATA_DIR || path.join(process.cwd(), "dados");
@@ -8,13 +9,6 @@ const DB_FILE = path.join(DATA_DIR, "caderninho.json");
 const BACKUP_DIR = path.join(DATA_DIR, "backups");
 const MAX_BACKUPS = 60;
 
-export const DEFAULT_TEMPLATE = `Olá, {responsavel}! Tudo bem? 😊
-Aqui é da {lanchonete}. Passando para lembrar que {aluno} está com um saldo em aberto de *{valor}* na cantina.
-
-{itens}
-Para pagar via Pix, a chave é: {pix}
-
-Qualquer dúvida é só me chamar. Obrigada! 💛`;
 
 export function defaultSettings(): Settings {
   return {
@@ -36,18 +30,18 @@ export function newId(): string {
 
 function defaultProducts(): Product[] {
   const list: [string, number, string, string][] = [
-    ["Coxinha", 600, "🍗", "Salgados"],
-    ["Pão de queijo", 400, "🧀", "Salgados"],
-    ["Esfiha", 600, "🥟", "Salgados"],
-    ["Misto quente", 700, "🥪", "Salgados"],
-    ["Pastel", 700, "🥠", "Salgados"],
-    ["Suco natural", 500, "🧃", "Bebidas"],
-    ["Refrigerante lata", 600, "🥤", "Bebidas"],
-    ["Água", 300, "💧", "Bebidas"],
-    ["Achocolatado", 450, "🥛", "Bebidas"],
-    ["Bolo (fatia)", 500, "🍰", "Doces"],
-    ["Chocolate", 400, "🍫", "Doces"],
-    ["Pipoca", 350, "🍿", "Doces"],
+    ["Coxinha", 600, "", "Salgados"],
+    ["Pão de queijo", 400, "", "Salgados"],
+    ["Esfiha", 600, "", "Salgados"],
+    ["Misto quente", 700, "", "Salgados"],
+    ["Pastel", 700, "", "Salgados"],
+    ["Suco natural", 500, "", "Bebidas"],
+    ["Refrigerante lata", 600, "", "Bebidas"],
+    ["Água", 300, "", "Bebidas"],
+    ["Achocolatado", 450, "", "Bebidas"],
+    ["Bolo (fatia)", 500, "", "Doces"],
+    ["Chocolate", 400, "", "Doces"],
+    ["Pipoca", 350, "", "Doces"],
   ];
   return list.map(([name, price, emoji, category]) => ({
     id: newId(),

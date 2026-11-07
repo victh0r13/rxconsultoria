@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
-import { X, CheckCircle2, AlertTriangle, Info } from "lucide-react";
-import { avatarColor, initials, moneyPlain } from "@/lib/format";
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { X } from "lucide-react";
+import { moneyPlain } from "@/lib/format";
 import type { StudentStatus } from "@/lib/types";
 
 export function cx(...c: (string | false | null | undefined)[]) {
@@ -19,7 +19,6 @@ export function Modal({
   children,
   footer,
   size = "md",
-  icon,
 }: {
   open: boolean;
   onClose: () => void;
@@ -28,9 +27,7 @@ export function Modal({
   children: ReactNode;
   footer?: ReactNode;
   size?: "sm" | "md" | "lg" | "xl";
-  icon?: ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -51,31 +48,25 @@ export function Modal({
   if (!open) return null;
   const width = { sm: "max-w-md", md: "max-w-xl", lg: "max-w-3xl", xl: "max-w-5xl" }[size];
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-6" role="dialog" aria-modal>
-      <div className="absolute inset-0 animate-fade bg-stone-950/40 backdrop-blur-[2px]" onClick={onClose} />
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-start sm:px-6 sm:pt-[8vh]" role="dialog" aria-modal>
+      <div className="absolute inset-0 animate-fade bg-[#1b1a17]/35" onClick={onClose} />
       <div
-        ref={ref}
         className={cx(
-          "relative flex max-h-[94vh] w-full animate-pop flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl ring-1 ring-black/5 sm:rounded-3xl dark:bg-stone-900 dark:ring-white/10",
+          "relative flex max-h-[90vh] w-full animate-in flex-col overflow-hidden rounded-t-xl border border-line bg-surface shadow-[0_24px_60px_-20px_rgba(0,0,0,0.35)] sm:max-h-[84vh] sm:rounded-xl",
           width,
         )}
       >
-        <div className="flex items-start gap-3 border-b border-stone-100 px-6 pt-5 pb-4 dark:border-stone-800">
-          {icon && <div className="mt-0.5 shrink-0">{icon}</div>}
+        <div className="flex items-start gap-3 px-6 pt-5 pb-4">
           <div className="min-w-0 flex-1">
-            <h2 className="font-display text-lg font-bold tracking-tight">{title}</h2>
-            {subtitle && <div className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">{subtitle}</div>}
+            <h2 className="text-[16px] font-semibold">{title}</h2>
+            {subtitle && <div className="mt-0.5 text-[13px] text-ink-3">{subtitle}</div>}
           </div>
-          <button onClick={onClose} className="btn btn-ghost -mr-2 h-9 w-9 rounded-full p-0" aria-label="Fechar">
-            <X size={18} />
+          <button onClick={onClose} className="btn btn-ghost btn-icon -mt-1 -mr-2" aria-label="Fechar">
+            <X size={17} strokeWidth={1.75} />
           </button>
         </div>
-        <div className="min-h-0 flex-1 overflow-y-auto px-6 py-5">{children}</div>
-        {footer && (
-          <div className="border-t border-stone-100 bg-stone-50/70 px-6 py-4 dark:border-stone-800 dark:bg-stone-950/40">
-            {footer}
-          </div>
-        )}
+        <div className="min-h-0 flex-1 overflow-y-auto px-6 pb-6">{children}</div>
+        {footer && <div className="border-t border-line px-6 py-3.5">{footer}</div>}
       </div>
     </div>
   );
@@ -118,37 +109,22 @@ export function ConfirmProvider({ children }: { children: ReactNode }) {
         onClose={() => close(false)}
         title={state?.title}
         size="sm"
-        icon={
-          <div
-            className={cx(
-              "grid h-10 w-10 place-items-center rounded-full",
-              state?.danger ? "bg-rose-100 text-rose-600 dark:bg-rose-500/20" : "bg-brand-100 text-brand-600",
-            )}
-          >
-            <AlertTriangle size={20} />
-          </div>
-        }
         footer={
           <div className="flex justify-end gap-2">
             <button className="btn btn-secondary" onClick={() => close(false)}>
               Cancelar
             </button>
-            <button
-              className={cx("btn", state?.danger ? "btn-danger" : "btn-primary")}
-              disabled={blocked}
-              onClick={() => close(true)}
-              autoFocus
-            >
+            <button className={cx("btn", state?.danger ? "btn-danger" : "btn-primary")} disabled={blocked} onClick={() => close(true)} autoFocus>
               {state?.confirmLabel ?? "Confirmar"}
             </button>
           </div>
         }
       >
-        <div className="text-[15px] leading-relaxed text-stone-600 dark:text-stone-300">{state?.message}</div>
+        <div className="text-[14px] leading-relaxed text-ink-2">{state?.message}</div>
         {state?.requireText && (
           <div className="mt-4">
             <label className="label">
-              Digite <b>{state.requireText}</b> para confirmar
+              Para confirmar, digite <b className="text-ink">{state.requireText}</b>
             </label>
             <input className="input" value={typed} onChange={(e) => setTyped(e.target.value)} autoFocus />
           </div>
@@ -174,25 +150,25 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const push = useCallback((t: Omit<Toast, "id">) => {
     const id = Date.now() + Math.random();
-    setToasts((prev) => [...prev.slice(-3), { ...t, id }]);
-    setTimeout(() => setToasts((prev) => prev.filter((x) => x.id !== id)), t.action ? 7000 : 4000);
+    setToasts((prev) => [...prev.slice(-2), { ...t, id }]);
+    setTimeout(() => setToasts((prev) => prev.filter((x) => x.id !== id)), t.action ? 7000 : 3500);
   }, []);
   return (
     <ToastCtx.Provider value={push}>
       {children}
-      <div className="no-print pointer-events-none fixed right-0 bottom-0 z-[60] flex w-full max-w-sm flex-col gap-2 p-5">
+      <div className="no-print pointer-events-none fixed bottom-0 left-1/2 z-[60] flex w-full max-w-md -translate-x-1/2 flex-col items-center gap-2 p-5">
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="pointer-events-auto flex animate-slide-up items-center gap-3 rounded-2xl bg-stone-900 px-4 py-3 text-sm text-white shadow-2xl dark:bg-white dark:text-stone-900"
+            className={cx(
+              "pointer-events-auto flex animate-in items-center gap-4 rounded-md px-4 py-2.5 text-[13.5px] shadow-lg",
+              t.kind === "error" ? "bg-debt text-surface" : "bg-ink text-paper",
+            )}
           >
-            {t.kind === "success" && <CheckCircle2 size={18} className="shrink-0 text-emerald-400 dark:text-emerald-600" />}
-            {t.kind === "error" && <AlertTriangle size={18} className="shrink-0 text-rose-400 dark:text-rose-600" />}
-            {t.kind === "info" && <Info size={18} className="shrink-0 text-sky-400 dark:text-sky-600" />}
-            <div className="min-w-0 flex-1">{t.text}</div>
+            <div className="min-w-0">{t.text}</div>
             {t.action && (
               <button
-                className="shrink-0 rounded-lg px-2 py-1 font-semibold text-brand-300 hover:bg-white/10 dark:text-brand-600 dark:hover:bg-stone-100"
+                className="-mr-1 shrink-0 font-semibold underline underline-offset-2 opacity-90 hover:opacity-100"
                 onClick={() => {
                   t.action?.onClick();
                   setToasts((prev) => prev.filter((x) => x.id !== t.id));
@@ -208,73 +184,37 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// ---------------- Avatar & badges ----------------
+// ---------------- Status & valores ----------------
 
-export function Avatar({ name, size = 40, muted }: { name: string; size?: number; muted?: boolean }) {
-  return (
-    <div
-      className={cx(
-        "grid shrink-0 place-items-center rounded-full font-bold",
-        muted ? "bg-stone-200 text-stone-500 dark:bg-stone-800" : avatarColor(name),
-      )}
-      style={{ width: size, height: size, fontSize: size * 0.36 }}
-    >
-      {initials(name)}
-    </div>
-  );
-}
-
-export function StatusBadge({ status, days }: { status: StudentStatus; days?: number }) {
-  switch (status) {
-    case "atrasado":
-      return (
-        <span className="badge bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-          Atrasado{days ? ` · ${days}d` : ""}
-        </span>
-      );
-    case "devendo":
-      return (
-        <span className="badge bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-          Em aberto
-        </span>
-      );
-    case "credito":
-      return (
-        <span className="badge bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
-          Com crédito
-        </span>
-      );
-    default:
-      return (
-        <span className="badge bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          Em dia
-        </span>
-      );
-  }
+export function StatusText({ status, days, className }: { status: StudentStatus; days?: number; className?: string }) {
+  const map: Record<StudentStatus, [string, string]> = {
+    atrasado: ["text-debt", days ? `${days} dias em aberto` : "atrasado"],
+    devendo: ["text-warn", days ? `${days} ${days === 1 ? "dia" : "dias"} em aberto` : "em aberto"],
+    credito: ["text-paid", "tem crédito"],
+    em_dia: ["text-ink-3", "em dia"],
+  };
+  const [color, label] = map[status];
+  return <span className={cx("text-[12.5px]", color, className)}>{label}</span>;
 }
 
 export function BalanceText({ cents, className }: { cents: number; className?: string }) {
-  const color =
-    cents > 0 ? "text-rose-600 dark:text-rose-400" : cents < 0 ? "text-sky-600 dark:text-sky-400" : "text-emerald-600 dark:text-emerald-400";
+  const color = cents > 0 ? "text-debt" : cents < 0 ? "text-paid" : "text-ink-3";
   return (
-    <span className={cx("tabular font-bold", color, className)}>
-      {cents < 0 ? "+ " : ""}R$ {moneyPlain(Math.abs(cents))}
+    <span className={cx("tabular whitespace-nowrap", color, className)}>
+      {cents < 0 ? "+" : ""}R$ {moneyPlain(Math.abs(cents))}
     </span>
   );
 }
 
 // ---------------- Money input ----------------
 
-/** Campo de dinheiro estilo "maquininha": digitar 1 2 5 0 vira 12,50. */
+/** Campo de dinheiro estilo maquininha: digitar 1 2 5 0 vira 12,50. */
 export function MoneyInput({
   value,
   onChange,
   autoFocus,
   className,
+  inputClassName,
   placeholder = "0,00",
   onEnter,
   id,
@@ -283,18 +223,19 @@ export function MoneyInput({
   onChange: (cents: number) => void;
   autoFocus?: boolean;
   className?: string;
+  inputClassName?: string;
   placeholder?: string;
   onEnter?: () => void;
   id?: string;
 }) {
   return (
     <div className={cx("relative", className)}>
-      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-sm font-semibold text-stone-400">R$</span>
+      <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[13px] text-ink-3">R$</span>
       <input
         id={id}
         inputMode="numeric"
         autoFocus={autoFocus}
-        className="input tabular pl-10 font-semibold"
+        className={cx("input tabular pl-9", inputClassName)}
         placeholder={placeholder}
         value={value ? moneyPlain(value) : ""}
         onChange={(e) => {
@@ -312,24 +253,11 @@ export function MoneyInput({
   );
 }
 
-export function EmptyState({
-  icon,
-  title,
-  text,
-  action,
-}: {
-  icon: ReactNode;
-  title: string;
-  text?: ReactNode;
-  action?: ReactNode;
-}) {
+export function EmptyState({ title, text, action }: { title: string; text?: ReactNode; action?: ReactNode }) {
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
-      <div className="mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-brand-50 text-3xl text-brand-500 dark:bg-brand-500/10">
-        {icon}
-      </div>
-      <h3 className="font-display text-lg font-bold">{title}</h3>
-      {text && <p className="mt-1 max-w-sm text-sm text-stone-500 dark:text-stone-400">{text}</p>}
+    <div className="px-6 py-14 text-center">
+      <p className="font-serif text-[19px] italic text-ink-2">{title}</p>
+      {text && <p className="mx-auto mt-1.5 max-w-sm text-[13px] text-ink-3">{text}</p>}
       {action && <div className="mt-5">{action}</div>}
     </div>
   );
@@ -337,12 +265,21 @@ export function EmptyState({
 
 export function PageHeader({ title, subtitle, actions }: { title: string; subtitle?: ReactNode; actions?: ReactNode }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h1 className="font-display text-[28px] leading-tight font-bold tracking-tight">{title}</h1>
-        {subtitle && <p className="mt-1 text-[15px] text-stone-500 dark:text-stone-400">{subtitle}</p>}
+        <h1 className="font-serif text-[34px] leading-none tracking-[-0.01em]">{title}</h1>
+        {subtitle && <p className="mt-2.5 text-[13.5px] text-ink-3">{subtitle}</p>}
       </div>
       {actions && <div className="no-print flex flex-wrap items-center gap-2">{actions}</div>}
+    </header>
+  );
+}
+
+export function SectionTitle({ children, aside }: { children: ReactNode; aside?: ReactNode }) {
+  return (
+    <div className="mb-3 flex items-baseline justify-between gap-3">
+      <h2 className="text-[13px] font-semibold">{children}</h2>
+      {aside && <div className="text-[12.5px] text-ink-3">{aside}</div>}
     </div>
   );
 }

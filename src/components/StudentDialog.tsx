@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { UserRound } from "lucide-react";
 import { saveStudent } from "@/app/actions";
 import { money } from "@/lib/format";
 import { useApp } from "./AppShell";
@@ -70,11 +69,6 @@ function Inner({
       open
       onClose={onClose}
       title={studentId ? "Editar aluno" : "Novo aluno"}
-      icon={
-        <div className="grid h-10 w-10 place-items-center rounded-full bg-sky-100 text-sky-600 dark:bg-sky-500/20 dark:text-sky-300">
-          <UserRound size={20} />
-        </div>
-      }
       footer={
         <div className="flex justify-end gap-2">
           <button className="btn btn-secondary" onClick={onClose}>
@@ -124,14 +118,14 @@ function Inner({
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Ex.: alergia a amendoim, só pode refrigerante às sextas…"
           />
-          <p className="hint">Aparece em destaque sempre que for anotar um fiado para este aluno.</p>
+          <p className="hint">Aparece em destaque toda vez que for anotar um fiado para este aluno.</p>
         </div>
-        <div className="sm:col-span-2 rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/50">
+        <div className="space-y-3 border-t border-line pt-4 sm:col-span-2">
           <label className="flex cursor-pointer items-center gap-3 text-sm font-medium">
-            <input type="checkbox" className="h-4 w-4 accent-brand-500" checked={customLimit} onChange={(e) => setCustomLimit(e.target.checked)} />
+            <input type="checkbox" className="h-4 w-4 accent-[var(--ink)]" checked={customLimit} onChange={(e) => setCustomLimit(e.target.checked)} />
             Limite de fiado personalizado
             {!customLimit && (
-              <span className="text-stone-500">
+              <span className="text-ink-3">
                 (usando o padrão: {data.settings.defaultCreditLimit ? money(data.settings.defaultCreditLimit) : "sem limite"})
               </span>
             )}
@@ -142,12 +136,12 @@ function Inner({
               <p className="hint">Deixe 0 para não ter limite.</p>
             </div>
           )}
-          <label className="mt-3 flex cursor-pointer items-center gap-3 text-sm font-medium">
-            <input type="checkbox" className="h-4 w-4 accent-rose-500" checked={blocked} onChange={(e) => setBlocked(e.target.checked)} />
+          <label className="flex cursor-pointer items-center gap-3 text-sm font-medium">
+            <input type="checkbox" className="h-4 w-4 accent-[var(--debt)]" checked={blocked} onChange={(e) => setBlocked(e.target.checked)} />
             Bloquear novos fiados para este aluno
           </label>
         </div>
-        {error && <div className="text-sm font-medium text-rose-600 sm:col-span-2">{error}</div>}
+        {error && <div className="text-sm font-medium text-debt sm:col-span-2">{error}</div>}
         <button type="submit" className="hidden" />
       </form>
     </Modal>
