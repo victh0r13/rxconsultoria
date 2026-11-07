@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Display", "Inter", system-ui, sans-serif;
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-300: #fdba74;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --animate-pop: pop 0.18s ease-out;
+  --animate-fade: fade 0.18s ease-out;
+  --animate-slide-up: slide-up 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-stone-100 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100;
+  font-feature-settings: "tnum" 0;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-stone-200/80 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:border-stone-800 dark:bg-stone-900;
+  }
+  .btn {
+    @apply inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold whitespace-nowrap transition select-none active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-sm {
+    @apply h-8 rounded-lg px-3 text-[13px];
+  }
+  .btn-lg {
+    @apply h-12 rounded-2xl px-5 text-base;
+  }
+  .btn-primary {
+    @apply bg-brand-500 text-white shadow-sm shadow-brand-500/30 hover:bg-brand-600;
+  }
+  .btn-success {
+    @apply bg-emerald-600 text-white shadow-sm shadow-emerald-600/30 hover:bg-emerald-700;
+  }
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-white shadow-sm shadow-[#25D366]/30 hover:bg-[#1ebe5b];
+  }
+  .btn-danger {
+    @apply bg-rose-600 text-white hover:bg-rose-700;
+  }
+  .btn-secondary {
+    @apply border border-stone-200 bg-white text-stone-800 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:bg-stone-700;
+  }
+  .btn-ghost {
+    @apply text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white;
+  }
+  .input {
+    @apply h-11 w-full rounded-xl border border-stone-200 bg-white px-3.5 text-[15px] text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-500/15 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100;
+  }
+  textarea.input {
+    @apply h-auto py-2.5 leading-relaxed;
+  }
+  .label {
+    @apply mb-1.5 block text-[13px] font-semibold text-stone-600 dark:text-stone-300;
+  }
+  .hint {
+    @apply mt-1 text-xs text-stone-500 dark:text-stone-400;
+  }
+  .chip {
+    @apply inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-stone-200 bg-white px-3 text-[13px] font-medium text-stone-600 transition hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300;
+  }
+  .chip[data-active="true"] {
+    @apply border-stone-900 bg-stone-900 text-white dark:border-white dark:bg-white dark:text-stone-900;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap;
+  }
+  .kbd {
+    @apply inline-flex h-5 min-w-5 items-center justify-center rounded-md border border-current/20 px-1 font-sans text-[11px] font-semibold opacity-70;
+  }
+}
+
+/* Barra de rolagem discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(120 113 108 / 0.35) transparent;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-full {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .card {
+    box-shadow: none !important;
+    border-color: #ddd !important;
+  }
+}
